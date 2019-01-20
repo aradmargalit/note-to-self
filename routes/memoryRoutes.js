@@ -7,7 +7,7 @@ module.exports = app => {
   app.post('/api/memories', requireLogin, async (req, res) => {
     await new Memory({
       author_id: req.user.googleId,
-      memory: req.memory,
+      memory: req.body.text,
     }).save();
 
     Memory.find({ author_id: req.user.googleId }, function(err, memories) {
