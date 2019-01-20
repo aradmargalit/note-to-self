@@ -22,10 +22,10 @@ class Header extends Component {
         );
       default:
         return [
-          <Navbar.Text style={{ padding: '0 10px 0 0' }}>
+          <Navbar.Text style={{ padding: '0 10px 0 0' }} key="welcomeback">
             Welcome Back, {`${this.props.auth.displayName.split(' ')[0]}`}
           </Navbar.Text>,
-          <Button href="/api/logout" variant="outline-danger">
+          <Button href="/api/logout" variant="outline-danger" key="logout">
             Log Out
           </Button>,
         ];
@@ -35,7 +35,7 @@ class Header extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg">
-        <LinkContainer to={this.props.auth ? '/surveys' : '/'}>
+        <LinkContainer to={this.props.auth ? '/dashboard' : '/'}>
           <Navbar.Brand>Note to Self</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
