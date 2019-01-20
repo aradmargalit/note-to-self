@@ -7,7 +7,6 @@ import Header from './Header';
 import Landing from './Landing';
 
 const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
   // CDM is the best place to fire off startup requests
@@ -17,13 +16,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fullwidth">
         <BrowserRouter>
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/surveys" component={Dashboard} />
-            <Route path="/surveys/new" component={SurveyNew} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </div>
         </BrowserRouter>
       </div>
