@@ -18,4 +18,15 @@ module.exports = app => {
       }
     });
   });
+
+  app.get('/api/memories', requireLogin, async (req, res) => {
+    //TODO::AM DRY this up
+    Memory.find({ author_id: req.user.googleId }, function(err, memories) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(memories);
+      }
+    });
+  });
 };

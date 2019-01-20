@@ -11,6 +11,7 @@ class App extends Component {
   // CDM is the best place to fire off startup requests
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchMemories();
   }
 
   render() {

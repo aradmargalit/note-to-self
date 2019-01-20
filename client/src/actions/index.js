@@ -6,6 +6,11 @@ export const fetchUser = () => async dispatch => {
   dispatch({ type: FETCH_USER, payload: response.data });
 };
 
+export const fetchMemories = () => async dispatch => {
+  const response = await axios.get('/api/memories');
+  dispatch({ type: FETCH_MEMORIES, payload: response.data });
+};
+
 export const submitMemory = memory => async dispatch => {
   const res = await axios.post('/api/memories', memory);
   dispatch({ type: FETCH_MEMORIES, payload: res.data });
