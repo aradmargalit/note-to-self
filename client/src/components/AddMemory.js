@@ -7,7 +7,7 @@ class AddMemory extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { memory: null };
+    this.state = { memory: '' };
   }
 
   handleSubmit = () => {

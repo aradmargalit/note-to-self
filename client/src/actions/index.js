@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_MEMORY } from './types';
+import { FETCH_USER, FETCH_MEMORIES } from './types';
 
 export const fetchUser = () => async dispatch => {
   const response = await axios.get('/api/current_user');
@@ -8,5 +8,5 @@ export const fetchUser = () => async dispatch => {
 
 export const submitMemory = memory => async dispatch => {
   const res = await axios.post('/api/memories', memory);
-  dispatch({ type: FETCH_MEMORY, payload: res.memories });
+  dispatch({ type: FETCH_MEMORIES, payload: res.data });
 };
