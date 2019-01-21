@@ -9,10 +9,11 @@ class MemoryList extends Component {
       case null:
         return;
       default:
-        return this.props.memories.map(({ memory, _id }) => {
+        console.log(this.props.memories[0]);
+        return this.props.memories.map(({ memory, _id, createdAt }) => {
           return (
             <ListGroup.Item key={_id}>
-              <Memory text={memory} id={_id} />
+              <Memory text={memory} date={createdAt} id={_id} />
             </ListGroup.Item>
           );
         });
