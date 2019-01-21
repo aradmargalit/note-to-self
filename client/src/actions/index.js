@@ -17,6 +17,6 @@ export const submitMemory = memory => async dispatch => {
 };
 
 export const deleteMemory = memoryId => async dispatch => {
-  const res = await axios.post('/api/deleteMemory/', { id: memoryId });
+  const res = await axios.delete(`/api/memories/${memoryId}`);
   dispatch({ type: FETCH_MEMORIES, payload: res.data });
 };

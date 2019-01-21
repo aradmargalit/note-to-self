@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const Memory = mongoose.model('memories');
 
 module.exports = app => {
-  app.post('/api/deleteMemory', requireLogin, async (req, res) => {
-    Memory.find({ _id: req.body.id }).remove(() => {
+  app.delete('/api/memories/:id', requireLogin, async (req, res) => {
+    Memory.find({ _id: req.params.id }).remove(() => {
       Memory.find({ author_id: req.user.googleId }, function(err, memories) {
         if (err) {
           res.status(500).send(err);
@@ -32,7 +32,7 @@ module.exports = app => {
   });
 
   app.get('/api/memories', requireLogin, async (req, res) => {
-    //TODO::AM DRY this up
+    //TODO::AM DRY this up, probably with middleware
     Memory.find({ author_id: req.user.googleId }, function(err, memories) {
       if (err) {
         res.status(500).send(err);
