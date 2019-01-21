@@ -4,6 +4,18 @@ const mongoose = require('mongoose');
 const Memory = mongoose.model('memories');
 
 module.exports = app => {
+  app.post('/api/deleteMemory', requireLogin, async (req, res) => {
+    Memory.find({ _id: req.body.id }).remove(() => {
+      Memory.find({ author_id: req.user.googleId }, function(err, memories) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.send(memories);
+        }
+      });
+    });
+  });
+
   app.post('/api/memories', requireLogin, async (req, res) => {
     await new Memory({
       author_id: req.user.googleId,

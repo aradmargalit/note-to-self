@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListGroup } from 'react-bootstrap';
+import Memory from './Memory';
 
 class MemoryList extends Component {
   renderMems = () => {
@@ -9,7 +10,11 @@ class MemoryList extends Component {
         return;
       default:
         return this.props.memories.map(({ memory, _id }) => {
-          return <ListGroup.Item key={_id}>{memory}</ListGroup.Item>;
+          return (
+            <ListGroup.Item key={_id}>
+              <Memory text={memory} id={_id} />
+            </ListGroup.Item>
+          );
         });
     }
   };
