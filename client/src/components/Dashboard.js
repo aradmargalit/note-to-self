@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.fetchMemories();
+  }
+
   render() {
     return (
       <div className="container" style={{ padding: '30px 0' }}>
