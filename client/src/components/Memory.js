@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import moment from 'moment';
 
-const DATE_FORMAT = 'dddd, MMMM Do YYYY';
+const DATE_FORMAT = 'MM/DD/YYYY';
 
 class Memory extends Component {
   handleDelete = () => {
@@ -20,14 +20,11 @@ class Memory extends Component {
   };
 
   render() {
-    const createdAt = moment(this.props.date);
-    console.log(createdAt.format('dddd, MMMM Do YYYY, h:mm:ss a'));
-
     return (
       <Container>
         <Row style={{ marginRight: '-40px' }}>
           <Col xs={12} sm={8} style={{ paddingTop: '5px' }}>
-            {this.props.text}
+            <strong>{this.props.text}</strong>
           </Col>
           <Col xs={12} sm={{ span: 2, offset: 2 }}>
             <ButtonGroup className="pull-right float-right">
