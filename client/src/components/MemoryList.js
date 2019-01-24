@@ -9,7 +9,6 @@ class MemoryList extends Component {
       case null:
         return;
       default:
-        console.log(this.props.memories[0]);
         return this.props.memories.map(({ memory, _id, createdAt }) => {
           return (
             <ListGroup.Item key={_id}>

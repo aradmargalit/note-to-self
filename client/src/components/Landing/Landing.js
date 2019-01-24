@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import LazyHero from 'react-lazy-hero';
 import { Row, Col, Card } from 'react-bootstrap';
-import { GoChevronDown } from 'react-icons/go';
+import { GoChevronDown, GoLock } from 'react-icons/go';
 import card_content from './cards.json';
 
 class Landing extends Component {
@@ -69,7 +69,19 @@ class Landing extends Component {
             </h2>
           </Col>
         </Row>
-        <Row style={{ padding: '30px' }}>{this.renderCards()}</Row>
+        <Row style={{ padding: '2%' }}>{this.renderCards()}</Row>
+        <Row style={{ padding: '2%', textAlign: 'center' }}>
+          <Col xs={{ span: 6, offset: 3 }}>
+            <h3>
+              <GoLock /> {'  Secure. Always.'}
+            </h3>
+            <p>
+              Note to Self™ uses military-grade encryption to make secure your
+              most personal memories. Nobody can see your memories except you.
+              Ever.
+            </p>
+          </Col>
+        </Row>
       </div>
     );
   }

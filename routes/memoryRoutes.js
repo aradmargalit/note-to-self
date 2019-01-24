@@ -5,8 +5,8 @@ const Memory = mongoose.model('memories');
 
 module.exports = app => {
   app.delete('/api/memories/:id', requireLogin, async (req, res) => {
-    Memory.find({ _id: req.params.id }).remove(() => {
-      Memory.find({ author_id: req.user.googleId }, function(err, memories) {
+    Memory.findOneAndDelete({ _id: req.params.id }, () => {
+      Memory.find({ author_id: req.user.googleId }, (err, memories) => {
         if (err) {
           res.status(500).send(err);
         } else {

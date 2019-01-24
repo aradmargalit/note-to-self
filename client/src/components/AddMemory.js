@@ -16,6 +16,13 @@ class AddMemory extends Component {
     };
 
     this.props.submitMemory(memory);
+    this.setState({ memory: '' });
+  };
+
+  onEnterPressed = event => {
+    if (event.key === 'Enter') {
+      this.handleSubmit();
+    }
   };
 
   render() {
@@ -27,6 +34,7 @@ class AddMemory extends Component {
           aria-describedby="basic-addon2"
           value={this.state.memory}
           onChange={event => this.setState({ memory: event.target.value })}
+          onKeyPress={this.onEnterPressed}
         />
         <InputGroup.Append>
           <Button type="submit" onClick={this.handleSubmit}>
