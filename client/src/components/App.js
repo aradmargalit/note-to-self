@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing/Landing';
 import Dashboard from './Dashboard';
+import Settings from './Settings/Settings';
 
 class App extends Component {
   // CDM is the best place to fire off startup requests
@@ -21,6 +22,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/settings" component={Settings} />
           </div>
         </BrowserRouter>
       </div>

@@ -13,7 +13,7 @@ class Dashboard extends Component {
     return (
       <div className="container" style={{ padding: '30px 0' }}>
         <AddMemory />
-        <h4 style={{ paddingTop: '30px' }}>Memories: </h4>
+        <h4 style={{ paddingTop: '30px' }}>Your Memories</h4>
         <MemoryList />
       </div>
     );

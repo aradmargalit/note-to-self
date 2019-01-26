@@ -11,7 +11,7 @@ class MemoryList extends Component {
       default:
         return this.props.memories.map(({ memory, _id, createdAt }) => {
           return (
-            <ListGroup.Item key={_id}>
+            <ListGroup.Item key={_id} action>
               <Memory text={memory} date={createdAt} id={_id} />
             </ListGroup.Item>
           );

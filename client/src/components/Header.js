@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Navbar, Nav } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Header extends Component {
@@ -22,19 +22,25 @@ class Header extends Component {
         );
       default:
         return [
-          <Navbar.Text style={{ padding: '0 10px 0 0' }} key="welcomeback">
-            Welcome Back, {`${this.props.auth.displayName.split(' ')[0]}`}
-          </Navbar.Text>,
-          <Button href="/api/logout" variant="outline-danger" key="logout">
-            Log Out
-          </Button>,
+          <NavDropdown
+            key="dropdown"
+            title={`Welcome Back, ${this.props.auth.displayName}`}
+          >
+            <LinkContainer to="/settings">
+              <NavDropdown.Item>Account Settings</NavDropdown.Item>
+            </LinkContainer>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="/api/logout" style={{ color: '#dc3545' }}>
+              Logout
+            </NavDropdown.Item>
+          </NavDropdown>,
         ];
     }
   };
 
   render() {
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar collapseOnSelect bg="light" expand="lg">
         <LinkContainer to={this.props.auth ? '/dashboard' : '/'}>
           <Navbar.Brand>Note to Self</Navbar.Brand>
         </LinkContainer>
