@@ -14,7 +14,10 @@ class MemoryList extends Component {
           .fill()
           .map((_, i) => {
             return (
-              <ListGroup.Item style={{ textAlign: 'center' }} key={`l${i}`}>
+              <ListGroup.Item
+                style={{ textAlign: 'center', padding: '30px' }}
+                key={`l${i}`}
+              >
                 <BarLoader
                   sizeUnit={'px'}
                   size={15}

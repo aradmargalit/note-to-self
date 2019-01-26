@@ -16,6 +16,11 @@ export const submitMemory = memory => async dispatch => {
   dispatch({ type: FETCH_MEMORIES, payload: res.data });
 };
 
+export const editMemory = memory => async dispatch => {
+  const res = await axios.put(`/api/memories/${memory.id}`, memory);
+  dispatch({ type: FETCH_MEMORIES, payload: res.data });
+};
+
 export const deleteMemory = memoryId => async dispatch => {
   const res = await axios.delete(`/api/memories/${memoryId}`);
   dispatch({ type: FETCH_MEMORIES, payload: res.data });

@@ -42,7 +42,7 @@ class Memory extends Component {
   render() {
     let modal = {
       title: 'Edit Memory',
-      text: this.props.text
+      text: this.props.text,
     };
 
     return (
@@ -73,6 +73,7 @@ class Memory extends Component {
           show={this.state.show}
           handleClose={this.handleClose}
           modal={modal}
+          id={this.props.id}
         />
       </Container>
     );

@@ -16,6 +16,26 @@ module.exports = app => {
     });
   });
 
+  app.put('/api/memories/:id', requireLogin, async (req, res) => {
+    console.log(req.body.text);
+    Memory.findOne({ _id: req.params.id }, (err, record) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        record.memory = req.body.text;
+        record.save(() => {
+          Memory.find({ author_id: req.user.googleId }, (err, memories) => {
+            if (err) {
+              res.status(500).send(err);
+            } else {
+              res.send(memories);
+            }
+          });
+        });
+      }
+    });
+  });
+
   app.post('/api/memories', requireLogin, async (req, res) => {
     await new Memory({
       author_id: req.user.googleId,

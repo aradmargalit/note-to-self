@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class EditMemory extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      memory: '',
+      memory: this.props.modal.text,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit() {
-    alert(`Would have updated to: ${this.state.memory}`);
+    this.props.editMemory({ text: this.state.memory, id: this.props.id });
     this.props.handleClose();
   }
 
@@ -27,7 +29,6 @@ class EditMemory extends Component {
           <InputGroup className="mb-3">
             <FormControl
               as="textarea"
-              placeholder={this.props.modal.text}
               aria-label="Edit"
               aria-describedby="basic-addon2"
               value={this.state.memory}
@@ -49,4 +50,7 @@ class EditMemory extends Component {
   }
 }
 
-export default EditMemory;
+export default connect(
+  null,
+  actions
+)(EditMemory);
