@@ -11,15 +11,40 @@ import { GoTrashcan } from 'react-icons/go';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import moment from 'moment';
+import EditMemory from './EditMemory';
 
 const DATE_FORMAT = 'MM/DD/YYYY';
 
 class Memory extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      show: false,
+    };
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
   handleDelete = () => {
     this.props.deleteMemory(this.props.id);
   };
 
   render() {
+    let modal = {
+      title: 'Edit Memory',
+      text: this.props.text
+    };
+
     return (
       <Container>
         <Row style={{ marginRight: '-40px' }}>
@@ -28,7 +53,9 @@ class Memory extends Component {
           </Col>
           <Col xs={12} sm={{ span: 2, offset: 2 }}>
             <ButtonGroup className="pull-right float-right">
-              <Button variant="outline-secondary">Edit</Button>
+              <Button variant="outline-secondary" onClick={this.handleShow}>
+                Edit
+              </Button>
               <Button variant="outline-danger" onClick={this.handleDelete}>
                 <GoTrashcan />
               </Button>
@@ -42,6 +69,11 @@ class Memory extends Component {
             </Badge>
           </Col>
         </Row>
+        <EditMemory
+          show={this.state.show}
+          handleClose={this.handleClose}
+          modal={modal}
+        />
       </Container>
     );
   }
