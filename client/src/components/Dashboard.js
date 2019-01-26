@@ -3,6 +3,7 @@ import AddMemory from './AddMemory';
 import MemoryList from './MemoryList';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { Container } from 'react-bootstrap';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -11,11 +12,11 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="container" style={{ padding: '30px 0' }}>
+      <Container style={{ padding: '30px 20px' }}>
         <AddMemory />
         <h4 style={{ paddingTop: '30px' }}>Your Memories</h4>
         <MemoryList />
-      </div>
+      </Container>
     );
   }
 }

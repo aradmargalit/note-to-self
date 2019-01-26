@@ -14,7 +14,6 @@ class Landing extends Component {
           <Card
             border={theme}
             style={{
-              width: '40vw',
               padding: '10px',
               display: 'table',
               margin: 'auto',
@@ -31,6 +30,10 @@ class Landing extends Component {
       );
     });
   }
+
+  scrollToBottom = () => {
+    this.pageBottom.scrollIntoView({ behavior: 'smooth' });
+  };
 
   render() {
     return this.props.auth ? (
@@ -55,7 +58,9 @@ class Landing extends Component {
             A tiny app to help you remember lessons you might have remembered,
             once.
           </h5>
-          <GoChevronDown style={{ marginTop: '10px' }} />
+          <a onClick={this.scrollToBottom}>
+            <GoChevronDown style={{ marginTop: '10px', cursor: 'pointer' }} />
+          </a>
         </LazyHero>
         <Row style={{ padding: '30px' }}>
           <Col xs={12}>
@@ -69,8 +74,8 @@ class Landing extends Component {
             </h2>
           </Col>
         </Row>
-        <Row style={{ padding: '2%' }}>{this.renderCards()}</Row>
-        <Row style={{ padding: '2%', textAlign: 'center' }}>
+        <Row style={{ padding: '30px' }}>{this.renderCards()}</Row>
+        <Row style={{ textAlign: 'center' }}>
           <Col xs={{ span: 6, offset: 3 }}>
             <h3>
               <GoLock /> {'  Secure. Always.'}
@@ -82,6 +87,12 @@ class Landing extends Component {
             </p>
           </Col>
         </Row>
+        <div
+          style={{ float: 'left', clear: 'both' }}
+          ref={el => {
+            this.pageBottom = el;
+          }}
+        />
       </div>
     );
   }
