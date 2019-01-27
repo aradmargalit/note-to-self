@@ -11,42 +11,28 @@ export const fetchUser = () => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const fetchMemories = () => async dispatch => {
+async function sendRequest(dispatch, method, url, data = null) {
   dispatch({ type: FETCH_MEMORIES });
   try {
-    const res = await axios.get('/api/memories');
+    const res = await axios({ method, url, data });
     dispatch({ type: FETCH_MEMORIES_SUCCESS, payload: res.data });
   } catch (err) {
     dispatch({ type: FETCH_MEMORIES_FAILURE, payload: err });
   }
+}
+
+export const fetchMemories = () => async dispatch => {
+  sendRequest(dispatch, 'get', '/api/memories');
 };
 
 export const submitMemory = memory => async dispatch => {
-  dispatch({ type: FETCH_MEMORIES });
-  try {
-    const res = await axios.post('/api/memories', memory);
-    dispatch({ type: FETCH_MEMORIES_SUCCESS, payload: res.data });
-  } catch (err) {
-    dispatch({ type: FETCH_MEMORIES_FAILURE, payload: err });
-  }
+  sendRequest(dispatch, 'post', '/api/memories', memory);
 };
 
 export const editMemory = memory => async dispatch => {
-  dispatch({ type: FETCH_MEMORIES });
-  try {
-    const res = await axios.put(`/api/memories/${memory.id}`, memory);
-    dispatch({ type: FETCH_MEMORIES_SUCCESS, payload: res.data });
-  } catch (err) {
-    dispatch({ type: FETCH_MEMORIES_FAILURE, payload: err });
-  }
+  sendRequest(dispatch, 'put', `/api/memories/${memory.id}`, memory);
 };
 
 export const deleteMemory = memoryId => async dispatch => {
-  dispatch({ type: FETCH_MEMORIES });
-  try {
-    const res = await axios.delete(`/api/memories/${memoryId}`);
-    dispatch({ type: FETCH_MEMORIES_SUCCESS, payload: res.data });
-  } catch (err) {
-    dispatch({ type: FETCH_MEMORIES_FAILURE, payload: err });
-  }
+  sendRequest(dispatch, 'delete', `/api/memories/${memoryId}`);
 };
