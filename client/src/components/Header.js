@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import LoginButton from './LoginButton';
 
 class Header extends Component {
   renderContent = () => {
@@ -9,17 +10,7 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return (
-          <Button href="/auth/google" variant="outline-dark">
-            <img
-              alt="google-login"
-              src="http://pluspng.com/img-png/google-logo-png-google-logo-icon-png-transparent-background-1000.png"
-              width="20"
-              style={{ padding: '0 5px 0 0' }}
-            />
-            Login with Google
-          </Button>
-        );
+        return <LoginButton />;
       default:
         return [
           <NavDropdown
