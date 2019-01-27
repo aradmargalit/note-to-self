@@ -12,7 +12,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    return this.props.auth != false ? (
+    return this.props.auth !== false ? (
       <Container style={{ padding: '30px 20px' }}>
         <AddMemory />
         <h4 style={{ paddingTop: '30px' }}>Your Memories</h4>
