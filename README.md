@@ -1,10 +1,10 @@
-# :rocket: Node Boilerplate :rocket:
+# :pencil: Note to Self
 
-## What It Is
+## Description
 
-I've tried to get backend federated auth with Google to work for like 3 years and finally stumbled across a course that explained it well!
+A simple web app for storing and retrieving small memories. Like a diary, but bite-sized. :apple:
 
-### It's using
+### Technologies
 
 1. [NodeJS](https://nodejs.org/en/) - Javascript backend server
 2. [Express](https://expressjs.com/) - Routing, cookie management, HTTP helpers
@@ -15,19 +15,30 @@ I've tried to get backend federated auth with Google to work for like 3 years an
 7. [MLab](https://mlab.com/) - SaaS MongoDB hosting
 8. [Heroku](https://www.heroku.com/) - PaaS server hosting - to run the Node/Express Server
 
-## How This Works
+## Local Setup
 
-![OAuth2.0 with_Google](resources/architecture.png)
+### Local Secrets
 
-## Gotchas
-
-This boilerplate expects there to be secrets available at `config/keys.js`. More specifically, the keys it expects are:
+This boilerplate expects there to be secrets available at `config/dev.js`. More specifically, the keys it expects are:
 
 - `googleClientID` - the Client ID provided by Google when you set up OAuth
 - `googleClientSecret` - the Client Secret that comes with the above key
 - `mongoURI` - the Mongo connection string, which contains an admin user in your MLab instance
 - `cookieKey` - a key used to encrypt your cookie data
+- `encKey` - used to encrypt memories
+- `sigKey` - used to sign the encrypted memories
 
-### Credits
+### Startup
 
-Big thanks to [Stephen Grider](https://github.com/StephenGrider) for creating fantastic Udemy courses on the modern web tech stack. I highly recommend any curious parties to check out his classes!
+From the `server/` directory, run:
+
+```bash
+$ yarn run dev
+> *Startup noises*
+```
+
+This will startup both the backend and the webserver.
+
+## How Auth Works
+
+![OAuth2.0 with_Google](resources/architecture.png)
