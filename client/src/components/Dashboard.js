@@ -3,8 +3,9 @@ import AddMemory from './AddMemory';
 import MemoryList from './MemoryList';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+import Statistics from './Statistics/Statistics';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -14,9 +15,19 @@ class Dashboard extends Component {
   render() {
     return this.props.auth !== false ? (
       <Container style={{ padding: '30px 20px' }}>
-        <AddMemory />
-        <h4 style={{ paddingTop: '30px' }}>Your Memories</h4>
-        <MemoryList />
+        <Row>
+          <Col>
+            <AddMemory />
+          </Col>
+        </Row>
+        <Row style={{ paddingTop: '30px' }}>
+          <Col xs={12} lg={4}>
+            <Statistics />
+          </Col>
+          <Col xs={12} lg={8}>
+            <MemoryList />
+          </Col>
+        </Row>
       </Container>
     ) : (
       <Redirect
