@@ -64,7 +64,14 @@ class Memory extends Component {
         </Row>
         <Row>
           <Col xs={12} sm={12}>
-            <Badge pill variant="secondary">
+            <Badge
+              pill
+              variant={
+                moment(this.props.date).isSame(moment(), 'day')
+                  ? 'success'
+                  : 'secondary'
+              }
+            >
               {moment(this.props.date).format(DATE_FORMAT)}
             </Badge>
           </Col>

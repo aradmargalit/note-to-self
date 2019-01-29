@@ -4,7 +4,7 @@ import {
   FETCH_MEMORIES_FAILURE,
 } from '../actions/types';
 
-const initialState = { memories: {} };
+const initialState = {};
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_MEMORIES:

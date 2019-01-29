@@ -58,9 +58,17 @@ class Landing extends Component {
             A tiny app to help you remember lessons you might have remembered,
             once.
           </h5>
-          <a onClick={this.scrollToBottom}>
+          <button
+            onClick={this.scrollToBottom}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              outline: 'none',
+              color: 'white',
+            }}
+          >
             <GoChevronDown style={{ marginTop: '10px', cursor: 'pointer' }} />
-          </a>
+          </button>
         </LazyHero>
         <Row style={{ padding: '30px' }}>
           <Col xs={12}>
