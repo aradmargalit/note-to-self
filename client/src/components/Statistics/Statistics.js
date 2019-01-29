@@ -11,7 +11,7 @@ import './Statistics.css';
 
 class Statistics extends Component {
   getDaysSinceLastEntry = memoryList => {
-    if (memoryList) {
+    if (memoryList.length) {
       memoryList.sort(function compare(a, b) {
         var dateA = new Date(a.createdAt);
         var dateB = new Date(b.createdAt);
@@ -19,6 +19,8 @@ class Statistics extends Component {
       });
 
       return moment(memoryList.reverse()[0]['createdAt']).fromNow();
+    } else {
+      return '∞';
     }
   };
 
