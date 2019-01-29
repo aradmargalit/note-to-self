@@ -50,7 +50,7 @@ class MemoryList extends Component {
         memories.memoryList = groupMemories(memories.memoryList);
         return memories.memoryList.map(({ groupingDate, memories }) => {
           return (
-            <div key={groupingDate} style={{ padding: '20px' }}>
+            <div key={groupingDate} style={{ paddingBottom: '20px' }}>
               <h6>{moment(groupingDate).format('MMMM YYYY')}</h6>
               <ListGroup>{this.renderListItems(memories)}</ListGroup>
             </div>
