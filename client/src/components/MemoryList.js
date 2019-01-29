@@ -5,6 +5,9 @@ import Memory from './Memory';
 import { BarLoader } from 'react-spinners';
 import ErrorAlert from './ErrorAlert';
 import moment from 'moment';
+import _ from 'lodash';
+
+const DATE_FORMAT = 'YYYY-MM';
 
 const NUMBER_LOADERS = 4;
 
@@ -44,6 +47,7 @@ class MemoryList extends Component {
           return <ErrorAlert message={memories.errorMessage} />;
         }
 
+        memories.memoryList = groupMemories(memories.memoryList);
         return memories.memoryList.map(({ groupingDate, memories }) => {
           return (
             <div key={groupingDate} style={{ padding: '20px' }}>
@@ -63,10 +67,25 @@ class MemoryList extends Component {
   }
 }
 
+// Helper to group memories into months
+function groupMemories(memories) {
+  memories.forEach(
+    datum =>
+      (datum['groupingDate'] = moment(datum['createdAt']).format(DATE_FORMAT))
+  );
+
+  // Group memories by MM/YYYY
+  // Create a dict of MM/YYYY => [mem1, mem2]
+  return _.chain(memories)
+    .groupBy('groupingDate')
+    .toPairs()
+    .map(pair => _.zipObject(['groupingDate', 'memories'], pair))
+    .value();
+}
+
 function mapStateToProps({ memories }) {
   return {
     memories,
   };
 }
-
 export default connect(mapStateToProps)(MemoryList);
