@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { RingLoader } from 'react-spinners';
 import ErrorAlert from '../ErrorAlert';
 import moment from 'moment';
+import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
 import './Statistics.css';
 
@@ -22,6 +23,38 @@ class Statistics extends Component {
     } else {
       return '∞';
     }
+  };
+
+  getContributionsForDay = (memoryList, date) => {
+    return memoryList.filter(memory =>
+      moment(memory['createdAt']).isSame(date, 'date')
+    ).length;
+  };
+
+  getSparkData = memoryList => {
+    if (memoryList.length) {
+      let contributionArray = [];
+
+      for (var i = 0; i <= 30; i++) {
+        var date = moment(memoryList[0].createdAt)
+          .subtract(30, 'day')
+          .add(i, 'd');
+
+        let count = this.getContributionsForDay(memoryList, date);
+        contributionArray.push(count);
+      }
+      return contributionArray;
+    }
+  };
+
+  renderSparkChart = memoryList => {
+    return memoryList.length ? (
+      <Sparklines data={this.getSparkData(memoryList)}>
+        <SparklinesCurve color="#007bff" />
+      </Sparklines>
+    ) : (
+      <p>Chart unavailable - no data.</p>
+    );
   };
 
   renderStatistics = ({ isFetching, errorMessage, memoryList }) => {
@@ -47,6 +80,12 @@ class Statistics extends Component {
                 Time Since Last Entry <GoClock />
               </h5>
               <p>{this.getDaysSinceLastEntry(memoryList)}</p>
+            </Col>
+          </Row>,
+          <Row key="spark" style={{ paddingTop: '20px' }}>
+            <Col>
+              <h5>Contribution Chart</h5>
+              {this.renderSparkChart(memoryList)}
             </Col>
           </Row>,
         ];
