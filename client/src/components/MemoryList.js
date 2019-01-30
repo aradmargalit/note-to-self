@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 import Memory from './Memory';
 import { BarLoader } from 'react-spinners';
+import { GoSync } from 'react-icons/go';
 import ErrorAlert from './ErrorAlert';
 import moment from 'moment';
 import _ from 'lodash';
+import * as actions from '../actions';
 
 const DATE_FORMAT = 'YYYY-MM';
 
@@ -44,7 +46,17 @@ class MemoryList extends Component {
 
       case false:
         if (memories.errorMessage) {
-          return <ErrorAlert message={memories.errorMessage} />;
+          return (
+            <div>
+              <ErrorAlert message={memories.errorMessage} />
+              <Button
+                onClick={this.props.fetchMemories}
+                style={{ marginTop: '10px' }}
+              >
+                Retry <GoSync />
+              </Button>
+            </div>
+          );
         }
 
         memories.memoryList = groupMemories(memories.memoryList);
@@ -88,4 +100,7 @@ function mapStateToProps({ memories }) {
     memories,
   };
 }
-export default connect(mapStateToProps)(MemoryList);
+export default connect(
+  mapStateToProps,
+  actions
+)(MemoryList);

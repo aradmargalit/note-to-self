@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Jumbotron, Row, Col } from 'react-bootstrap';
-import { GoDashboard, GoPulse, GoClock } from 'react-icons/go';
+import { GoPulse, GoClock } from 'react-icons/go';
 import Countup from 'react-countup';
 import { connect } from 'react-redux';
 import { RingLoader } from 'react-spinners';
@@ -98,9 +98,7 @@ class Statistics extends Component {
   render() {
     return (
       <Fragment>
-        <h4>
-          Statistics <GoDashboard />
-        </h4>
+        <h4>Statistics</h4>
         <Jumbotron>{this.renderStatistics(this.props.memories)}</Jumbotron>
       </Fragment>
     );
