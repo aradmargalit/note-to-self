@@ -39,6 +39,21 @@ class Memory extends Component {
     this.props.deleteMemory(this.props.id);
   };
 
+  renderButtons = () => {
+    if (this.props.id) {
+      return (
+        <ButtonGroup className="pull-right float-right">
+          <Button variant="outline-secondary" onClick={this.handleShow}>
+            Edit
+          </Button>
+          <Button variant="outline-danger" onClick={this.handleDelete}>
+            <GoTrashcan />
+          </Button>
+        </ButtonGroup>
+      );
+    }
+  };
+
   render() {
     let modal = {
       title: 'Edit Memory',
@@ -52,14 +67,7 @@ class Memory extends Component {
             <strong>{this.props.text}</strong>
           </Col>
           <Col xs={12} sm={{ span: 2, offset: 2 }}>
-            <ButtonGroup className="pull-right float-right">
-              <Button variant="outline-secondary" onClick={this.handleShow}>
-                Edit
-              </Button>
-              <Button variant="outline-danger" onClick={this.handleDelete}>
-                <GoTrashcan />
-              </Button>
-            </ButtonGroup>
+            {this.renderButtons()}
           </Col>
         </Row>
         <Row>

@@ -14,6 +14,11 @@ const DATE_FORMAT = 'YYYY-MM';
 const NUMBER_LOADERS = 4;
 
 class MemoryList extends Component {
+  tryRefresh = () => {
+    this.props.fetchMemories();
+    this.props.fetchUser();
+  };
+
   renderListItems = memories => {
     memories.sort(function compare(a, b) {
       var dateA = new Date(a.createdAt);
@@ -49,10 +54,7 @@ class MemoryList extends Component {
           return (
             <div>
               <ErrorAlert message={memories.errorMessage} />
-              <Button
-                onClick={this.props.fetchMemories}
-                style={{ marginTop: '10px' }}
-              >
+              <Button onClick={this.tryRefresh} style={{ marginTop: '10px' }}>
                 Retry <GoSync />
               </Button>
             </div>
@@ -75,7 +77,9 @@ class MemoryList extends Component {
   };
 
   render() {
-    return <Fragment>{this.renderMems(this.props.memories)}</Fragment>;
+    // Assign to new object so we don't mutate state
+    const memories = Object.assign({}, this.props.memories);
+    return <Fragment>{this.renderMems(memories)}</Fragment>;
   }
 }
 

@@ -10,7 +10,12 @@ export default function(state = initialState, action) {
     case FETCH_MEMORIES:
       return { ...state, isFetching: true };
     case FETCH_MEMORIES_SUCCESS:
-      return { ...state, isFetching: false, memoryList: action.payload };
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: null,
+        memoryList: action.payload,
+      };
     case FETCH_MEMORIES_FAILURE:
       return {
         ...state,

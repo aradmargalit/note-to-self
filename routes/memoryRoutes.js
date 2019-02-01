@@ -17,7 +17,6 @@ module.exports = app => {
   });
 
   app.put('/api/memories/:id', requireLogin, async (req, res) => {
-    console.log(req.body.text);
     Memory.findOne({ _id: req.params.id }, (err, record) => {
       if (err) {
         res.status(500).send(err);
