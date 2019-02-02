@@ -61,8 +61,8 @@ class MemoryList extends Component {
           );
         }
 
-        memories.memoryList = groupMemories(memories.memoryList);
-        return memories.memoryList.map(({ groupingDate, memories }) => {
+        memories.groupedMemoryList = groupMemories(memories.memoryList);
+        return memories.groupedMemoryList.map(({ groupingDate, memories }) => {
           return (
             <div key={groupingDate} style={{ paddingBottom: '20px' }}>
               <h6>{moment(groupingDate).format('MMMM YYYY')}</h6>
@@ -77,9 +77,7 @@ class MemoryList extends Component {
   };
 
   render() {
-    // Assign to new object so we don't mutate state
-    const memories = Object.assign({}, this.props.memories);
-    return <Fragment>{this.renderMems(memories)}</Fragment>;
+    return <Fragment>{this.renderMems(this.props.memories)}</Fragment>;
   }
 }
 
