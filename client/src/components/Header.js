@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import LoginButton from './LoginButton';
 
@@ -12,20 +12,18 @@ class Header extends Component {
       case false:
         return <LoginButton />;
       default:
-        return [
-          <NavDropdown
-            key="dropdown"
-            title={`Welcome Back, ${this.props.auth.displayName}`}
-          >
-            <LinkContainer to="/settings">
-              <NavDropdown.Item>Account Settings</NavDropdown.Item>
-            </LinkContainer>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="/api/logout" style={{ color: '#dc3545' }}>
+        return (
+          <Nav.Item>
+            {`Welcome Back, ${this.props.auth.displayName}`}
+            <Button
+              href="/api/logout"
+              variant="outline-danger"
+              style={{ margin: '0px 10px' }}
+            >
               Logout
-            </NavDropdown.Item>
-          </NavDropdown>,
-        ];
+            </Button>
+          </Nav.Item>
+        );
     }
   };
 
