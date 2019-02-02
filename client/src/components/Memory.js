@@ -63,10 +63,10 @@ class Memory extends Component {
     return (
       <Container>
         <Row style={{ marginRight: '-40px' }}>
-          <Col xs={12} sm={8} style={{ paddingTop: '5px' }}>
+          <Col xs={8} sm={8} style={{ paddingTop: '5px' }}>
             <strong>{this.props.text}</strong>
           </Col>
-          <Col xs={12} sm={{ span: 2, offset: 2 }}>
+          <Col xs={4} sm={{ span: 2, offset: 2 }}>
             {this.renderButtons()}
           </Col>
         </Row>
