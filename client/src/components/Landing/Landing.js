@@ -91,7 +91,8 @@ class Landing extends Component {
             <p>
               Note to Self™ uses military-grade encryption to make secure your
               most personal memories. Nobody can see your memories except you.
-              Ever.
+              Ever. Just kidding about the military grade stuff, but it is
+              encrypted at rest. I promise.
             </p>
           </Col>
         </Row>
