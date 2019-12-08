@@ -15,6 +15,10 @@ class AddMemory extends Component {
       text: this.state.memory,
     };
 
+    if (!memory.text || memory.text.length < 1) {
+      return;
+    }
+
     this.props.submitMemory(memory);
     this.setState({ memory: '' });
   };
