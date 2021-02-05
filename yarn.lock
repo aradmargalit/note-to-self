@@ -189,8 +189,8 @@ destroy@~1.0.4:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
 
 dotty@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/dotty/-/dotty-0.1.0.tgz#da371ccd931a37282f8f7f77adada7d54539708a"
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/dotty/-/dotty-0.1.1.tgz#2871f6712749c014079b5837c7c8e8bf3aca1fea"
 
 ee-first@1.1.1:
   version "1.1.1"
